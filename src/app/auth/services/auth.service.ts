@@ -16,7 +16,7 @@ export class AuthService {
   private _usuario!: Usuario;
 
   get usuario(){
-    return {...this._usuario};
+    return this._usuario;
   }
 
   constructor(private http: HttpClient) { }
@@ -33,10 +33,6 @@ export class AuthService {
       tap( resp =>{
         if(resp.ok){
           localStorage.setItem('token',resp.token!);
-          this._usuario = {
-            name: resp.name!,
-            uid: resp.uid!,
-          }
         }
       }),
       map( resp => resp.ok),
@@ -72,6 +68,7 @@ export class AuthService {
         localStorage.setItem('token',resp.token!);
         this._usuario = {
           name: resp.name!,
+          email: resp.email,
           uid: resp.uid!,
         }
         return resp.ok

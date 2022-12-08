@@ -14,7 +14,6 @@ import Swal from 'sweetalert2'
 export class LoginComponent  {
 
 
-  private usr!: AuthResponse;
 
   miFormulario: FormGroup = this.fb.group({
     email: ['', [Validators.required, Validators.email]],

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { tap  } from 'rxjs/operators';
 import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
@@ -14,7 +13,7 @@ import { AuthService } from '../../auth/services/auth.service';
     `
   ]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent{
 
 
   get usuario(){
@@ -25,16 +24,7 @@ export class DashboardComponent implements OnInit {
     private authService:AuthService) { }
 
 
-  ngOnInit(){
-    return this.authService.validarToken()
-    .pipe(
-      tap(valid=>{
-        if(!valid){
-          this.router.navigateByUrl('/auth');
-        }
-      })
-    )
-  }
+
 
   logout(){
     this.authService.logout();
