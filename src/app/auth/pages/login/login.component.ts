@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AuthResponse } from '../../interfaces/interfaces';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -27,13 +28,20 @@ export class LoginComponent  {
 
  
   login(){
-    const {email, password} = this.miFormulario.value;
+     const {email, password} = this.miFormulario.value;
 
-    this.authService.login(email,password).subscribe((usr:AuthResponse)=>{
-      this.usr = usr;
-    })
-    
-    this.router.navigateByUrl('/dashboard');
+     this.authService.login(email,password)
+     .subscribe((ok)=>{
+        if(ok===true){
+           this.router.navigateByUrl('/dashboard');
+        }else{
+           Swal.fire({
+             title: ok,
+             icon: 'error',
+           })
+        }
+     })
+
   }
 
 }
