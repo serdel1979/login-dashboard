@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:5000/api'
+  //baseUrl: 'http://localhost:5000/api'
+  baseUrl: 'https://server-node-angular-udemy-production.up.railway.app/api'
 };
 
 /*
